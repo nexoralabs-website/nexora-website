@@ -98,6 +98,14 @@ export function Navbar() {
                     )}
                   </AnimatePresence>
                 </div>
+              ) : link.label === "Home" ? (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="px-4 py-2 text-sm font-medium text-muted hover:text-foreground transition-colors rounded-lg hover:bg-primary/5"
+                >
+                  {link.label}
+                </Link>
               ) : (
                 <Link
                   key={link.href}

@@ -383,5 +383,5 @@ export const stats = [
   { label: "Projects Delivered", value: 12, suffix: "+" },
   { label: "Clients Worked With", value: 8, suffix: "+" },
   { label: "Years Experience", value: 2, suffix: "+" },
-  { label: "Focused on Delivery", value: 100, suffix: "%" },
+  { label: "Focused Delivery", value: 100, suffix: "%" },
 ];
