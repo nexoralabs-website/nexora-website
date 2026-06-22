@@ -28,12 +28,18 @@ export function Navbar() {
         aria-label="Main navigation"
       >
         <div
-          className="container-narrow mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 overflow-visible"
-          style={{ minHeight: "88px" }}
+          className="container-narrow mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 overflow-visible min-h-[76px] md:min-h-[88px]"
         >
-          {/* Logo */}
+          {/* Logo — mark only on mobile, full horizontal on md+ */}
           <div style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
-            <Logo variant="horizontal" />
+            {/* Mobile: icon mark */}
+            <span className="block md:hidden">
+              <Logo variant="mark" markSize={40} />
+            </span>
+            {/* Desktop: horizontal wordmark */}
+            <span className="hidden md:block">
+              <Logo variant="horizontal" />
+            </span>
           </div>
 
           {/* Desktop nav links */}
