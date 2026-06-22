@@ -27,23 +27,38 @@ export function Navbar() {
         )}
         aria-label="Main navigation"
       >
-        <div
-          className="container-narrow mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 overflow-visible min-h-[76px] md:min-h-[88px]"
-        >
-          {/* Logo — mark only on mobile, full horizontal on md+ */}
-          <div style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
-            {/* Mobile: icon mark */}
+        {/*
+          Three-column desktop layout:
+            [logo — fixed 196px] [nav — flex-1 centered] [cta — shrink-0]
+
+          The logo column is flex-none with an explicit width so it can NEVER
+          be compressed by flex pressure from the middle or right columns.
+        */}
+        <div className="container-narrow mx-auto flex items-center gap-10 px-4 sm:px-6 lg:px-8 min-h-[76px] md:min-h-[88px]">
+
+          {/* ── LEFT: Logo ───────────────────────────────────────────────── */}
+          {/*
+            flex-none + w-[196px] + min-w-[196px] = this column never shrinks.
+            overflow-visible = nothing inside can be clipped.
+          */}
+          <div className="flex-none w-[196px] min-w-[196px] overflow-visible flex items-center">
+            {/* Mobile (<768px): icon mark only */}
             <span className="block md:hidden">
               <Logo variant="mark" markSize={40} />
             </span>
-            {/* Desktop: horizontal wordmark */}
+            {/* Desktop (≥768px): full horizontal wordmark */}
             <span className="hidden md:block">
               <Logo variant="horizontal" />
             </span>
           </div>
 
-          {/* Desktop nav links */}
-          <div className="hidden lg:flex items-center gap-1">
+          {/* ── MIDDLE: Nav links ─────────────────────────────────────────── */}
+          {/*
+            flex-1 = takes all remaining space after logo and CTA.
+            justify-center = links sit in the middle of that space.
+            Only visible on lg+; on smaller screens this is hidden.
+          */}
+          <div className="hidden lg:flex flex-1 items-center justify-center gap-1">
             {navLinks.map((link) =>
               link.label === "Services" ? (
                 <div
@@ -120,34 +135,42 @@ export function Navbar() {
             )}
           </div>
 
-          {/* Desktop CTAs */}
-          <div className="hidden lg:flex items-center gap-3">
+          {/* ── RIGHT: CTAs + mobile hamburger ───────────────────────────── */}
+          {/*
+            shrink-0 = this column never shrinks.
+            ml-auto pushes it to the far right when the middle nav is hidden
+            (i.e. on tablet/mobile where the flex-1 nav div is display:none).
+          */}
+          <div className="shrink-0 ml-auto flex items-center gap-3">
+            {/* Desktop CTAs */}
             <a
               href={siteConfig.links.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-[#22be5c] hover:shadow-md"
+              className="hidden lg:inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-[#22be5c] hover:shadow-md"
             >
               <MessageCircle className="h-4 w-4" />
               WhatsApp
             </a>
-            <MagneticButton variant="accent" href="#contact">
-              Start Your Project
-            </MagneticButton>
-          </div>
+            <div className="hidden lg:block">
+              <MagneticButton variant="accent" href="#contact">
+                Start Your Project
+              </MagneticButton>
+            </div>
 
-          {/* Mobile hamburger */}
-          <button
-            className="lg:hidden p-2 rounded-lg hover:bg-primary/5 transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+            {/* Mobile hamburger */}
+            <button
+              className="lg:hidden p-2 rounded-lg hover:bg-primary/5 transition-colors"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
 
-        {/* Mobile menu */}
+        {/* ── Mobile dropdown menu ───────────────────────────────────────── */}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
