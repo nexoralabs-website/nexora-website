@@ -3,9 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
+import { Menu, X, ArrowRight, ChevronDown, MessageCircle } from "lucide-react";
 import { Logo } from "@/components/logo";
-import { Button } from "@/components/ui/button";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { navLinks, siteConfig } from "@/lib/constants";
 import { services } from "@/lib/data";
@@ -28,11 +27,16 @@ export function Navbar() {
         )}
         aria-label="Main navigation"
       >
-        <div className="container-narrow mx-auto flex min-h-[84px] items-center justify-between px-4 sm:px-6 lg:px-8 overflow-visible">
-          <div className="flex items-center shrink-0 gap-3">
-            <Logo variant="horizontal" size="sm" />
+        <div
+          className="container-narrow mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 overflow-visible"
+          style={{ minHeight: "88px" }}
+        >
+          {/* Logo */}
+          <div style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
+            <Logo variant="horizontal" />
           </div>
 
+          {/* Desktop nav links */}
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) =>
               link.label === "Services" ? (
@@ -98,14 +102,6 @@ export function Navbar() {
                     )}
                   </AnimatePresence>
                 </div>
-              ) : link.label === "Home" ? (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="px-4 py-2 text-sm font-medium text-muted hover:text-foreground transition-colors rounded-lg hover:bg-primary/5"
-                >
-                  {link.label}
-                </Link>
               ) : (
                 <Link
                   key={link.href}
@@ -118,15 +114,23 @@ export function Navbar() {
             )}
           </div>
 
+          {/* Desktop CTAs */}
           <div className="hidden lg:flex items-center gap-3">
-            <Button variant="ghost" asChild>
-              <Link href={`mailto:${siteConfig.links.email}`}>Email Us</Link>
-            </Button>
+            <a
+              href={siteConfig.links.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-[#22be5c] hover:shadow-md"
+            >
+              <MessageCircle className="h-4 w-4" />
+              WhatsApp
+            </a>
             <MagneticButton variant="accent" href="#contact">
               Start Your Project
             </MagneticButton>
           </div>
 
+          {/* Mobile hamburger */}
           <button
             className="lg:hidden p-2 rounded-lg hover:bg-primary/5 transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -137,6 +141,7 @@ export function Navbar() {
           </button>
         </div>
 
+        {/* Mobile menu */}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
@@ -156,7 +161,17 @@ export function Navbar() {
                     {link.label}
                   </Link>
                 ))}
-                <div className="pt-3 border-t border-border mt-3">
+                <div className="pt-3 border-t border-border mt-3 flex flex-col gap-2">
+                  <a
+                    href={siteConfig.links.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-3 text-sm font-medium text-white"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    Message on WhatsApp
+                  </a>
                   <MagneticButton variant="accent" href="#contact" className="w-full">
                     Start Your Project
                   </MagneticButton>

@@ -1,57 +1,54 @@
 import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/constants";
 
 interface LogoProps {
+  /** "horizontal" = full wordmark (navbar), "mark" = icon only (footer) */
+  variant?: "horizontal" | "mark";
+  /** Only used for the mark variant */
+  size?: number;
   className?: string;
-  variant?: "horizontal" | "compact" | "mark";
-  size?: "sm" | "md" | "lg";
 }
 
-export function Logo({ className, variant = "horizontal", size = "md" }: LogoProps) {
-  if (variant === "horizontal") {
+export function Logo({ variant = "horizontal", size = 44, className }: LogoProps) {
+  if (variant === "mark") {
     return (
       <Link
         href="/"
-        className={cn("inline-flex items-center shrink-0 pl-2", className)}
         aria-label={`${siteConfig.name} home`}
+        className={`inline-flex items-center flex-shrink-0${className ? ` ${className}` : ""}`}
       >
         <Image
-          src="/brand/logo-horizontal-light.png"
-          alt={siteConfig.name}
-          width={220}
-          height={64}
+          src="/brand/logo-mark.png"
+          alt={`${siteConfig.name} logo mark`}
+          width={size}
+          height={size}
           priority
-          className="object-contain"
-          style={{
-            width: "auto",
-            height: "auto",
-            maxWidth: "clamp(160px, 20vw, 220px)",
-            maxHeight: "52px",
-          }}
+          style={{ width: size, height: size, objectFit: "contain" }}
         />
       </Link>
     );
   }
 
-  // mark / compact variant — icon only
-  const markPx = size === "lg" ? 48 : size === "sm" ? 36 : 44;
-
+  // Horizontal logo — desktop 240px, mobile 170px, auto height to preserve aspect ratio
   return (
     <Link
       href="/"
-      className={cn("inline-flex items-center shrink-0", className)}
       aria-label={`${siteConfig.name} home`}
+      className={`inline-flex items-center flex-shrink-0${className ? ` ${className}` : ""}`}
     >
       <Image
-        src="/brand/logo-mark.png"
-        alt={`${siteConfig.name} logo mark`}
-        width={markPx}
-        height={markPx}
-        priority={variant === "compact"}
-        className="object-contain"
-        style={{ width: markPx, height: markPx }}
+        src="/brand/logo-horizontal-light.png"
+        alt={siteConfig.name}
+        width={240}
+        height={80}
+        priority
+        style={{
+          width: "240px",
+          height: "auto",
+          objectFit: "contain",
+        }}
+        className="w-[170px] sm:w-[240px]"
       />
     </Link>
   );

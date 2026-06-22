@@ -2,57 +2,68 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState, useTransition } from "react";
-import { Mail, MessageCircle, Send, CheckCircle2, Phone, MapPin } from "lucide-react";
+import { MessageCircle, Phone, MapPin } from "lucide-react";
 import { SectionHeader, AnimatedSection } from "@/components/ui/animated-section";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { contactFormSchema, type ContactFormValues } from "@/lib/validations/contact";
-import { submitContactForm } from "@/app/actions/contact";
 import { siteConfig } from "@/lib/constants";
 import { services } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
+const WHATSAPP_BASE = "https://wa.me/917339559072";
+
+function buildWhatsAppUrl(data: ContactFormValues): string {
+  const lines = [
+    `Hello Nexora Labs, I want to discuss a project.`,
+    ``,
+    `Name: ${data.name}`,
+    `Email: ${data.email}`,
+    data.company ? `Company: ${data.company}` : null,
+    data.phone ? `Phone: ${data.phone}` : null,
+    `Project: ${data.service}`,
+    data.budget ? `Budget: ${data.budget}` : null,
+    `Message: ${data.message}`,
+  ]
+    .filter((l) => l !== null)
+    .join("\n");
+
+  return `${WHATSAPP_BASE}?text=${encodeURIComponent(lines)}`;
+}
+
 const contactMethods = [
   {
-    icon: Mail,
-    label: "Email",
-    value: siteConfig.links.email,
-    href: `mailto:${siteConfig.links.email}`,
+    icon: MessageCircle,
+    label: "WhatsApp",
+    value: "Message Us",
+    href: `${WHATSAPP_BASE}?text=${encodeURIComponent("Hello Nexora Labs, I want to discuss a project.")}`,
+    external: true,
+    highlight: true,
   },
   {
     icon: Phone,
     label: "Phone",
     value: siteConfig.phoneDisplay,
     href: `tel:${siteConfig.phone}`,
-  },
-  {
-    icon: MessageCircle,
-    label: "WhatsApp",
-    value: "Message Us",
-    href: siteConfig.links.whatsapp,
+    external: false,
+    highlight: false,
   },
   {
     icon: MapPin,
     label: "Location",
     value: `${siteConfig.address.city}, ${siteConfig.address.state}, ${siteConfig.address.country}`,
     href: "#map",
+    external: false,
+    highlight: false,
   },
 ];
 
 export function ContactSection() {
-  const [isPending, startTransition] = useTransition();
-  const [submitResult, setSubmitResult] = useState<{
-    success: boolean;
-    message: string;
-  } | null>(null);
-
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -68,13 +79,8 @@ export function ContactSection() {
   });
 
   const onSubmit = (data: ContactFormValues) => {
-    startTransition(async () => {
-      const result = await submitContactForm(data);
-      setSubmitResult(result);
-      if (result.success) {
-        reset();
-      }
-    });
+    const url = buildWhatsAppUrl(data);
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -82,39 +88,59 @@ export function ContactSection() {
       <div className="container-narrow">
         <SectionHeader
           label="Contact"
-          title="Let's Build Something Great"
-          description="Tell us about your project and we'll get back to you within 24 hours."
+          title="Let's Talk About Your Project"
+          description="Send us a quick message on WhatsApp."
         />
 
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-5">
-          <AnimatedSection className="lg:col-span-2 space-y-6">
-            {contactMethods.map(({ icon: Icon, label, value, href }) => (
+          {/* Left column — contact methods + quick CTA */}
+          <AnimatedSection className="lg:col-span-2 space-y-4">
+            {contactMethods.map(({ icon: Icon, label, value, href, external, highlight }) => (
               <a
                 key={label}
                 href={href}
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="flex items-center gap-4 rounded-2xl border border-border p-4 transition-all hover:border-accent/30 hover:shadow-sm group"
+                target={external ? "_blank" : undefined}
+                rel={external ? "noopener noreferrer" : undefined}
+                className={cn(
+                  "flex items-center gap-4 rounded-2xl border p-4 transition-all hover:shadow-sm group",
+                  highlight
+                    ? "border-[#25D366]/40 bg-[#25D366]/5 hover:border-[#25D366]/60"
+                    : "border-border hover:border-accent/30"
+                )}
               >
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/5 text-primary group-hover:bg-accent/10 group-hover:text-accent transition-colors">
+                <div
+                  className={cn(
+                    "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors",
+                    highlight
+                      ? "bg-[#25D366]/10 text-[#25D366]"
+                      : "bg-primary/5 text-primary group-hover:bg-accent/10 group-hover:text-accent"
+                  )}
+                >
                   <Icon className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-muted uppercase tracking-wider">
-                    {label}
-                  </p>
+                  <p className="text-xs font-medium text-muted uppercase tracking-wider">{label}</p>
                   <p className="text-sm font-medium text-foreground">{value}</p>
                 </div>
               </a>
             ))}
 
-            {/* Quick Enquiry card */}
+            {/* Primary WhatsApp CTA card */}
             <div className="rounded-2xl border border-accent/30 bg-accent/5 p-5">
               <p className="text-sm font-semibold text-foreground mb-1">Quick Enquiry</p>
               <p className="text-xs text-muted mb-4 leading-relaxed">
-                Prefer to chat? Reach us directly on WhatsApp — we typically respond within minutes.
+                Prefer to chat? We typically respond on WhatsApp within minutes.
               </p>
               <div className="flex flex-col gap-2 sm:flex-row">
+                <a
+                  href={`${WHATSAPP_BASE}?text=${encodeURIComponent("Hello Nexora Labs, I want to discuss a project.")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#22be5c]"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  Message on WhatsApp
+                </a>
                 <a
                   href={`tel:${siteConfig.phone}`}
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary/90"
@@ -122,18 +148,10 @@ export function ContactSection() {
                   <Phone className="h-4 w-4" />
                   Call Now
                 </a>
-                <a
-                  href={siteConfig.links.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#22be5c]"
-                >
-                  <MessageCircle className="h-4 w-4" />
-                  WhatsApp Enquiry
-                </a>
               </div>
             </div>
 
+            {/* Map */}
             <div id="map" className="rounded-2xl border border-border overflow-hidden h-48 bg-background">
               <iframe
                 title="Nexora Labs Office Location"
@@ -145,12 +163,20 @@ export function ContactSection() {
             </div>
           </AnimatedSection>
 
+          {/* Right column — form that sends via WhatsApp */}
           <AnimatedSection delay={0.1} className="lg:col-span-3">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="rounded-2xl border border-border bg-background p-6 sm:p-8 space-y-5"
               noValidate
             >
+              <div className="flex items-center gap-2 mb-2">
+                <MessageCircle className="h-4 w-4 text-[#25D366]" />
+                <p className="text-xs text-muted">
+                  Submitting this form will open WhatsApp with your details pre-filled.
+                </p>
+              </div>
+
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name *</Label>
@@ -196,7 +222,7 @@ export function ContactSection() {
 
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="service">Service *</Label>
+                  <Label htmlFor="service">Project Type *</Label>
                   <select
                     id="service"
                     className={cn(
@@ -227,9 +253,9 @@ export function ContactSection() {
                     {...register("budget")}
                   >
                     <option value="">Select budget</option>
-                    <option value="< ₹5L">Less than ₹5L</option>
-                    <option value="₹5L - ₹15L">₹5L - ₹15L</option>
-                    <option value="₹15L - ₹50L">₹15L - ₹50L</option>
+                    <option value="Less than ₹5L">Less than ₹5L</option>
+                    <option value="₹5L – ₹15L">₹5L – ₹15L</option>
+                    <option value="₹15L – ₹50L">₹15L – ₹50L</option>
                     <option value="₹50L+">₹50L+</option>
                   </select>
                 </div>
@@ -250,31 +276,18 @@ export function ContactSection() {
                 )}
               </div>
 
-              {submitResult && (
-                <div
-                  className={cn(
-                    "flex items-center gap-2 rounded-xl p-4 text-sm",
-                    submitResult.success
-                      ? "bg-accent/10 text-foreground"
-                      : "bg-red-50 text-red-700"
-                  )}
-                  role="alert"
-                >
-                  {submitResult.success && <CheckCircle2 className="h-4 w-4 text-accent shrink-0" />}
-                  {submitResult.message}
-                </div>
-              )}
-
               <Button
                 type="submit"
-                variant="accent"
                 size="lg"
-                className="w-full sm:w-auto"
-                disabled={isPending}
+                className="w-full sm:w-auto bg-[#25D366] hover:bg-[#22be5c] text-white"
               >
-                {isPending ? "Sending..." : "Send Message"}
-                <Send className="h-4 w-4" />
+                <MessageCircle className="h-4 w-4" />
+                Send via WhatsApp
               </Button>
+
+              <p className="text-xs text-muted">
+                Clicking the button opens WhatsApp with your message pre-filled. No data is stored.
+              </p>
             </form>
           </AnimatedSection>
         </div>
