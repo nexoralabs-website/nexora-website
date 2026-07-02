@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
@@ -36,7 +37,6 @@ import {
   HelpCircle,
   LayoutGrid,
   ChevronDown,
-  ChevronRight,
   User,
   Calendar,
   Tag,
@@ -46,6 +46,7 @@ import {
 import { categories } from "@/lib/categories";
 import { technologies } from "@/lib/technologies";
 import { cn } from "@/lib/utils";
+import { StaggerContainer, StaggerItem } from "@/components/ui/animated-section";
 import type { Technology } from "@/types";
 
 const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -124,12 +125,51 @@ const getStatusBadgeStyles = (status: Technology["status"]) => {
   }
 };
 
+// Local accordion section used in the details panel
+function AccordionSection({
+  title,
+  sectionKey,
+  openSections,
+  toggle,
+  accent = false,
+  children,
+}: {
+  title: string;
+  sectionKey: string;
+  openSections: Record<string, boolean>;
+  toggle: (key: string) => void;
+  accent?: boolean;
+  children: React.ReactNode;
+}) {
+  const isOpen = !!openSections[sectionKey];
+  return (
+    <div className={cn("py-4", accent && "bg-lime-50/30 -mx-1 px-1 rounded-xl")}>
+      <button
+        type="button"
+        className="flex w-full items-center justify-between text-left"
+        onClick={() => toggle(sectionKey)}
+        aria-expanded={isOpen}
+      >
+        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+          {title}
+        </span>
+        <ChevronDown
+          className={cn(
+            "h-3.5 w-3.5 text-slate-400 transition-transform duration-200",
+            isOpen && "rotate-180"
+          )}
+        />
+      </button>
+      {isOpen && <div className="mt-3">{children}</div>}
+    </div>
+  );
+}
+
 export function TechnologiesSection() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [hoveredTech, setHoveredTech] = useState<Technology | null>(null);
   const [pinnedTech, setPinnedTech] = useState<Technology | null>(null);
-  const [focusedIndex, setFocusedIndex] = useState<number>(-1);
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({ overview: true });
   const panelRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -143,7 +183,6 @@ export function TechnologiesSection() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setPinnedTech(null);
-        setFocusedIndex(-1);
         return;
       }
       // ⌘K or Ctrl+K focuses search
@@ -222,12 +261,15 @@ export function TechnologiesSection() {
     }
 
     return (
-      <img
+      <Image
         src={tech.logo}
         alt={`${tech.name} logo`}
+        width={56}
+        height={56}
         className={cn("object-contain", className)}
         onError={() => setImgError(true)}
         loading="lazy"
+        unoptimized
       />
     );
   };
@@ -387,7 +429,7 @@ export function TechnologiesSection() {
                       tabIndex={0}
                       role="gridcell"
                       aria-label={`${tech.name} — ${tech.experienceLevel}. Press Enter to view details.`}
-                      aria-pressed={isPinned}
+                      aria-selected={isPinned}
                     >
                       {/* Logo + Core badge */}
                       <div>
