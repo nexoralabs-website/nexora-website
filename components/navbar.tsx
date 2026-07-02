@@ -38,17 +38,22 @@ export function Navbar() {
 
           {/* ── LEFT: Logo ───────────────────────────────────────────────── */}
           {/*
-            flex-none + w-[196px] + min-w-[196px] = this column never shrinks.
-            overflow-visible = nothing inside can be clipped.
+            flex-none prevents this column from ever being compressed.
+            overflow-visible ensures the image is never clipped.
+            Width adapts: mark on mobile (40px), wordmark on md+ (up to 200px).
           */}
-          <div className="flex-none w-[176px] min-w-[176px] overflow-visible flex items-center">
+          <div className="flex-none overflow-visible flex items-center">
             {/* Mobile (<768px): icon mark only */}
             <span className="block md:hidden">
-              <Logo variant="mark" markSize={40} />
+              <Logo variant="mark" markSize={40} priority />
             </span>
-            {/* Desktop (≥768px): full horizontal wordmark */}
-            <span className="hidden md:block">
-              <Logo variant="horizontal" />
+            {/* Tablet (768–1023px): slightly smaller wordmark */}
+            <span className="hidden md:block lg:hidden">
+              <Logo variant="horizontal" width={160} priority />
+            </span>
+            {/* Desktop (≥1024px): full wordmark */}
+            <span className="hidden lg:block">
+              <Logo variant="horizontal" width={200} priority />
             </span>
           </div>
 

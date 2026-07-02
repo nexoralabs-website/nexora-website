@@ -1,42 +1,63 @@
 import Link from "next/link";
+import Image from "next/image";
 import { siteConfig } from "@/lib/constants";
 
 /**
- * Logo component.
+ * Logo component — single source of truth for all logo usage.
  *
- * Navbar desktop : horizontal wordmark  (196 × 46 px natural size, shown at ~196 px wide)
- * Navbar mobile  : icon mark only       (40 × 40 px)
- * Footer         : icon mark only       (44 × 44 px)
+ * Variants:
+ *   "horizontal"  → full horizontal wordmark (navbar desktop)
+ *   "mark"        → icon mark only (navbar mobile, footer)
  *
  * Rules:
- *  - No Next/Image — avoids intrinsic-size constraints & aspect-ratio interference.
- *  - No fill, no sizes, no clamp(), no maxWidth, no transforms, no scale.
- *  - Width is set via an explicit pixel value in the style prop. Height is always "auto".
- *  - The <img> sits inside a plain flex wrapper so it never gets squished.
+ *  - Always uses next/image for optimisation and priority loading.
+ *  - Always object-contain — never cropped, stretched, or recoloured.
+ *  - Width is explicit; height is always proportional (via aspect-ratio / auto).
+ *  - The wrapper is overflow-visible + flex-shrink-0 to prevent clipping.
  */
 
 interface LogoProps {
-  /** "horizontal" = full wordmark for navbar; "mark" = icon only for footer */
+  /** "horizontal" = full wordmark; "mark" = icon only */
   variant?: "horizontal" | "mark";
-  /** Pixel size for the mark variant (renders as a square) */
+  /**
+   * Pixel width for the horizontal variant.
+   * Defaults responsive: 190 desktop → controlled in Navbar via CSS.
+   */
+  width?: number;
+  /**
+   * Pixel size (width & height) for the square mark variant.
+   * Defaults to 44.
+   */
   markSize?: number;
+  /** Whether to use priority loading (true for above-the-fold, i.e. navbar) */
+  priority?: boolean;
 }
 
-export function Logo({ variant = "horizontal", markSize = 44 }: LogoProps) {
+export function Logo({
+  variant = "horizontal",
+  width = 190,
+  markSize = 44,
+  priority = false,
+}: LogoProps) {
   if (variant === "mark") {
     return (
       <Link
         href="/"
         aria-label={`${siteConfig.name} home`}
-        style={{ display: "inline-flex", alignItems: "center", flexShrink: 0 }}
+        className="inline-flex items-center shrink-0 overflow-visible focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src="/brand/logo-mark.png"
-          alt={`${siteConfig.name} logo mark`}
+          alt={`${siteConfig.name} icon mark`}
           width={markSize}
           height={markSize}
-          style={{ width: markSize, height: markSize, display: "block" }}
+          priority={priority}
+          style={{
+            width: markSize,
+            height: markSize,
+            objectFit: "contain",
+            display: "block",
+          }}
         />
       </Link>
     );
@@ -44,23 +65,29 @@ export function Logo({ variant = "horizontal", markSize = 44 }: LogoProps) {
 
   /**
    * Horizontal wordmark.
-   * Natural image size: 196 × 46 px.
-   * We render it at exactly 196 px wide on desktop.
-   * On mobile (< 768 px) we hide this and show the mark instead — handled in Navbar.
+   * The image file is logo-horizontal-light.png — white/light background version.
+   * We pass explicit width; height is derived from the natural aspect ratio.
+   * Natural dims are ~600 × 140 px (approx 4.28 : 1 ratio).
    */
   return (
     <Link
       href="/"
       aria-label={`${siteConfig.name} home`}
-      style={{ display: "inline-flex", alignItems: "center", flexShrink: 0 }}
+      className="inline-flex items-center shrink-0 overflow-visible focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src="/brand/logo-horizontal-light.png"
         alt={siteConfig.name}
-        width={168}
-        height={40}
-        style={{ width: 168, height: "auto", display: "block", objectFit: "contain" }}
+        width={600}
+        height={140}
+        priority={priority}
+        style={{
+          width,
+          height: "auto",
+          objectFit: "contain",
+          display: "block",
+          maxWidth: "100%",
+        }}
       />
     </Link>
   );

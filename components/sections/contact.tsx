@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { MessageCircle, Phone, MapPin } from "lucide-react";
+import { MessageCircle, Phone, MapPin, Mail, Clock } from "lucide-react";
 import { SectionHeader, AnimatedSection } from "@/components/ui/animated-section";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -51,10 +51,26 @@ const contactMethods = [
     highlight: false,
   },
   {
+    icon: Mail,
+    label: "Email",
+    value: siteConfig.links.email,
+    href: `mailto:${siteConfig.links.email}`,
+    external: false,
+    highlight: false,
+  },
+  {
     icon: MapPin,
     label: "Location",
     value: `${siteConfig.address.city}, ${siteConfig.address.state}, ${siteConfig.address.country}`,
     href: "#map",
+    external: false,
+    highlight: false,
+  },
+  {
+    icon: Clock,
+    label: "Business Hours",
+    value: "Mon – Sat, 9 AM – 7 PM IST",
+    href: null,
     external: false,
     highlight: false,
   },
@@ -95,35 +111,57 @@ export function ContactSection() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-5">
           {/* Left column — contact methods + quick CTA */}
           <AnimatedSection className="lg:col-span-2 space-y-4">
-            {contactMethods.map(({ icon: Icon, label, value, href, external, highlight }) => (
-              <a
-                key={label}
-                href={href}
-                target={external ? "_blank" : undefined}
-                rel={external ? "noopener noreferrer" : undefined}
-                className={cn(
-                  "flex items-center gap-4 rounded-2xl border p-4 transition-all hover:shadow-sm group",
-                  highlight
-                    ? "border-[#25D366]/40 bg-[#25D366]/5 hover:border-[#25D366]/60"
-                    : "border-border hover:border-accent/30"
-                )}
-              >
-                <div
+            {contactMethods.map(({ icon: Icon, label, value, href, external, highlight }) => {
+              const inner = (
+                <>
+                  <div
+                    className={cn(
+                      "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors",
+                      highlight
+                        ? "bg-[#25D366]/10 text-[#25D366]"
+                        : "bg-primary/5 text-primary group-hover:bg-accent/10 group-hover:text-accent"
+                    )}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-medium text-muted uppercase tracking-wider">{label}</p>
+                    <p className="text-sm font-medium text-foreground truncate">{value}</p>
+                  </div>
+                </>
+              );
+
+              if (!href) {
+                return (
+                  <div
+                    key={label}
+                    className={cn(
+                      "flex items-center gap-4 rounded-2xl border p-4",
+                      "border-border"
+                    )}
+                  >
+                    {inner}
+                  </div>
+                );
+              }
+
+              return (
+                <a
+                  key={label}
+                  href={href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
                   className={cn(
-                    "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors",
+                    "flex items-center gap-4 rounded-2xl border p-4 transition-all hover:shadow-sm group",
                     highlight
-                      ? "bg-[#25D366]/10 text-[#25D366]"
-                      : "bg-primary/5 text-primary group-hover:bg-accent/10 group-hover:text-accent"
+                      ? "border-[#25D366]/40 bg-[#25D366]/5 hover:border-[#25D366]/60"
+                      : "border-border hover:border-accent/30"
                   )}
                 >
-                  <Icon className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="text-xs font-medium text-muted uppercase tracking-wider">{label}</p>
-                  <p className="text-sm font-medium text-foreground">{value}</p>
-                </div>
-              </a>
-            ))}
+                  {inner}
+                </a>
+              );
+            })}
 
             {/* Primary WhatsApp CTA card */}
             <div className="rounded-2xl border border-accent/30 bg-accent/5 p-5">

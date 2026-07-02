@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, MessageCircle, Phone, MapPin } from "lucide-react";
+import { Mail, MessageCircle, Phone, MapPin, Clock } from "lucide-react";
 import { footerLinks, siteConfig } from "@/lib/constants";
 
 export function Footer() {
@@ -12,14 +12,14 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand column — icon mark only */}
           <div className="lg:col-span-2">
-            <Link href="/" aria-label={`${siteConfig.name} home`} className="inline-flex">
+            <Link href="/" aria-label={`${siteConfig.name} home`} className="inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary rounded-sm">
+              {/* Use the dark/inverted mark that looks good on dark navy background */}
               <Image
-                src="/brand/logo-mark.png"
+                src="/brand/logo-mark-dark.png"
                 alt={`${siteConfig.name} logo mark`}
-                width={44}
-                height={44}
-                className="object-contain"
-                style={{ width: 44, height: 44 }}
+                width={48}
+                height={48}
+                style={{ width: 48, height: 48, objectFit: "contain" }}
               />
             </Link>
             <p className="mt-4 max-w-sm text-sm text-white/60 leading-relaxed">
@@ -100,6 +100,10 @@ export function Footer() {
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
                 <span>{siteConfig.address.city}, {siteConfig.address.state}, {siteConfig.address.country}</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Clock className="h-4 w-4 shrink-0 mt-0.5" />
+                <span>Mon – Sat, 9 AM – 7 PM IST</span>
               </li>
             </ul>
           </div>
