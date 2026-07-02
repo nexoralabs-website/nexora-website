@@ -58,9 +58,9 @@ export function Logo({ variant = "horizontal", markSize = 44 }: LogoProps) {
       <img
         src="/brand/logo-horizontal-light.png"
         alt={siteConfig.name}
-        width={196}
-        height={46}
-        style={{ width: 196, height: "auto", display: "block" }}
+        width={168}
+        height={40}
+        style={{ width: 168, height: "auto", display: "block", objectFit: "contain" }}
       />
     </Link>
   );

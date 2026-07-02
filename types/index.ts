@@ -38,6 +38,8 @@ export interface Technology {
   status: 'Stable' | 'Beta' | 'Deprecated';
   popularity: number;
   color: string;
+  whyItMatters?: string;
+  usedIn?: string[];
 }
 
 export interface TechCategory {

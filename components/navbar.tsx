@@ -34,14 +34,14 @@ export function Navbar() {
           The logo column is flex-none with an explicit width so it can NEVER
           be compressed by flex pressure from the middle or right columns.
         */}
-        <div className="container-narrow mx-auto flex items-center gap-10 px-4 sm:px-6 lg:px-8 min-h-[76px] md:min-h-[88px]">
+        <div className="container-narrow mx-auto flex items-center gap-10 px-4 sm:px-6 lg:px-8 min-h-[80px] md:min-h-[96px]">
 
           {/* ── LEFT: Logo ───────────────────────────────────────────────── */}
           {/*
             flex-none + w-[196px] + min-w-[196px] = this column never shrinks.
             overflow-visible = nothing inside can be clipped.
           */}
-          <div className="flex-none w-[196px] min-w-[196px] overflow-visible flex items-center">
+          <div className="flex-none w-[176px] min-w-[176px] overflow-visible flex items-center">
             {/* Mobile (<768px): icon mark only */}
             <span className="block md:hidden">
               <Logo variant="mark" markSize={40} />
