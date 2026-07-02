@@ -34,26 +34,27 @@ export function Navbar() {
           The logo column is flex-none with an explicit width so it can NEVER
           be compressed by flex pressure from the middle or right columns.
         */}
-        <div className="container-narrow mx-auto flex items-center gap-10 px-4 sm:px-6 lg:px-8 min-h-[80px] md:min-h-[96px]">
+        {/*
+          Navbar inner row.
+          min-h-[88px] gives the 64px logo 12px breathing room top+bottom.
+          gap-8 keeps columns apart without compressing the logo column.
+        */}
+        <div className="container-narrow mx-auto flex items-center gap-8 px-4 sm:px-6 lg:px-8 min-h-[88px]">
 
-          {/* ── LEFT: Logo ───────────────────────────────────────────────── */}
-          {/*
-            flex-none prevents this column from ever being compressed.
-            overflow-visible ensures the image is never clipped.
-            Width adapts: mark on mobile (40px), wordmark on md+ (up to 200px).
-          */}
-          <div className="flex-none overflow-visible flex items-center">
-            {/* Mobile (<768px): icon mark only */}
+          {/* ── LEFT: Logo ─────────────────────────────────────────────────
+              style props only — no Tailwind classes that could conflict.
+              flex-shrink:0  → never compressed by sibling flex items.
+              overflow:visible → nothing clips the image.
+              No width constraint here; the Logo component itself is 220×64 px.
+          ──────────────────────────────────────────────────────────────── */}
+          <div style={{ flexShrink: 0, overflow: "visible", display: "flex", alignItems: "center" }}>
+            {/* Mobile (<768 px): icon mark — 48×48 */}
             <span className="block md:hidden">
-              <Logo variant="mark" markSize={40} priority />
+              <Logo variant="mark" priority />
             </span>
-            {/* Tablet (768–1023px): slightly smaller wordmark */}
-            <span className="hidden md:block lg:hidden">
-              <Logo variant="horizontal" width={160} priority />
-            </span>
-            {/* Desktop (≥1024px): full wordmark */}
-            <span className="hidden lg:block">
-              <Logo variant="horizontal" width={200} priority />
+            {/* md+ (≥768 px): full 220×64 horizontal wordmark */}
+            <span className="hidden md:block">
+              <Logo variant="horizontal" priority />
             </span>
           </div>
 

@@ -3,90 +3,101 @@ import Image from "next/image";
 import { siteConfig } from "@/lib/constants";
 
 /**
- * Logo component — single source of truth for all logo usage.
+ * Logo — single source of truth.
  *
- * Variants:
- *   "horizontal"  → full horizontal wordmark (navbar desktop)
- *   "mark"        → icon mark only (navbar mobile, footer)
+ * Rendering contract:
+ *   "horizontal"  → 220 × 64 px rendered box, object-contain
+ *                   Used in Navbar desktop/tablet.
+ *   "mark"        → 48 × 48 px rendered box, object-contain
+ *                   Used in Navbar mobile + Footer.
  *
- * Rules:
- *  - Always uses next/image for optimisation and priority loading.
- *  - Always object-contain — never cropped, stretched, or recoloured.
- *  - Width is explicit; height is always proportional (via aspect-ratio / auto).
- *  - The wrapper is overflow-visible + flex-shrink-0 to prevent clipping.
+ * Why this approach:
+ *   next/image with explicit width/height props sets the intrinsic size of the
+ *   <img> element.  We then apply an inline style that pins the RENDERED size to
+ *   exactly those same pixel values.  height is NOT "auto" — it is the matching
+ *   pixel number — so there is no aspect-ratio recalculation happening anywhere.
+ *   The wrapper div has the matching pixel dimensions with overflow: visible so
+ *   nothing is ever clipped.
+ *
+ * Rules enforced here:
+ *   ✗ No fill
+ *   ✗ No object-cover
+ *   ✗ No overflow-hidden  (wrapper is overflow: visible)
+ *   ✗ No aspect-square
+ *   ✗ No transform / scale
+ *   ✗ No max-width on the image or its wrapper
+ *   ✓ object-contain always
+ *   ✓ priority on navbar logo
  */
 
 interface LogoProps {
-  /** "horizontal" = full wordmark; "mark" = icon only */
   variant?: "horizontal" | "mark";
-  /**
-   * Pixel width for the horizontal variant.
-   * Defaults responsive: 190 desktop → controlled in Navbar via CSS.
-   */
-  width?: number;
-  /**
-   * Pixel size (width & height) for the square mark variant.
-   * Defaults to 44.
-   */
-  markSize?: number;
-  /** Whether to use priority loading (true for above-the-fold, i.e. navbar) */
   priority?: boolean;
 }
 
-export function Logo({
-  variant = "horizontal",
-  width = 190,
-  markSize = 44,
-  priority = false,
-}: LogoProps) {
+/** Rendered pixel dimensions — the only place these numbers live. */
+const MARK_SIZE = 48;
+
+export function Logo({ variant = "horizontal", priority = false }: LogoProps) {
+  /* ── Icon mark (mobile navbar + footer) ─────────────────────────── */
   if (variant === "mark") {
     return (
       <Link
         href="/"
         aria-label={`${siteConfig.name} home`}
-        className="inline-flex items-center shrink-0 overflow-visible focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
+        style={{ display: "inline-flex", alignItems: "center", flexShrink: 0 }}
       >
+        {/*
+          Wrapper: explicit pixel box, overflow visible.
+          maxWidth: "none" on the <img> overrides Tailwind preflight's
+          `img { max-width: 100% }` which would otherwise clamp the image
+          to its container width.
+        */}
         <Image
           src="/brand/logo-mark.png"
           alt={`${siteConfig.name} icon mark`}
-          width={markSize}
-          height={markSize}
+          width={MARK_SIZE}
+          height={MARK_SIZE}
           priority={priority}
           style={{
-            width: markSize,
-            height: markSize,
+            width: MARK_SIZE,
+            height: MARK_SIZE,
             objectFit: "contain",
             display: "block",
+            flexShrink: 0,
+            maxWidth: "none",  /* defeat Tailwind preflight max-width: 100% */
           }}
         />
       </Link>
     );
   }
 
-  /**
-   * Horizontal wordmark.
-   * The image file is logo-horizontal-light.png — white/light background version.
-   * We pass explicit width; height is derived from the natural aspect ratio.
-   * Natural dims are ~600 × 140 px (approx 4.28 : 1 ratio).
-   */
+  /* ── Horizontal wordmark (navbar desktop / tablet) ───────────────── */
   return (
     <Link
       href="/"
       aria-label={`${siteConfig.name} home`}
-      className="inline-flex items-center shrink-0 overflow-visible focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
+      style={{ display: "inline-flex", alignItems: "center", flexShrink: 0 }}
     >
+      {/*
+        maxWidth: "none" defeats Tailwind preflight `img { max-width: 100% }`.
+        Without this, if the flex container is narrower than 220px the image
+        gets silently clamped — which is the exact clipping symptom reported.
+      */}
       <Image
         src="/brand/logo-horizontal-light.png"
         alt={siteConfig.name}
-        width={600}
-        height={140}
+        width={220}
+        height={64}
         priority={priority}
+        sizes="220px"
         style={{
-          width,
-          height: "auto",
+          width: 220,
+          height: 64,
           objectFit: "contain",
           display: "block",
-          maxWidth: "100%",
+          flexShrink: 0,
+          maxWidth: "none",  /* defeat Tailwind preflight max-width: 100% */
         }}
       />
     </Link>

@@ -12,14 +12,29 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand column — icon mark only */}
           <div className="lg:col-span-2">
-            <Link href="/" aria-label={`${siteConfig.name} home`} className="inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary rounded-sm">
-              {/* Use the dark/inverted mark that looks good on dark navy background */}
+            <Link
+              href="/"
+              aria-label={`${siteConfig.name} home`}
+              style={{ display: "inline-flex", alignItems: "center" }}
+            >
+              {/*
+                maxWidth: "none" defeats Tailwind v4 preflight's
+                `img { max-width: 100% }` which otherwise clamps the image
+                when its containing block is narrower than 48 px.
+              */}
               <Image
-                src="/brand/logo-mark-dark.png"
-                alt={`${siteConfig.name} logo mark`}
+                src="/brand/logo-mark.png"
+                alt={`${siteConfig.name} icon mark`}
                 width={48}
                 height={48}
-                style={{ width: 48, height: 48, objectFit: "contain" }}
+                style={{
+                  width: 48,
+                  height: 48,
+                  objectFit: "contain",
+                  display: "block",
+                  flexShrink: 0,
+                  maxWidth: "none",
+                }}
               />
             </Link>
             <p className="mt-4 max-w-sm text-sm text-white/60 leading-relaxed">
