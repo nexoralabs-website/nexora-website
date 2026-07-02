@@ -23,6 +23,7 @@ export interface TechnologyCategory {
   id: string;
   name: string;
   icon: string;
+  description: string;
   items: Technology[];
 }
 

@@ -5,13 +5,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Code2,
   Server,
-  CreditCard,
-  Layout,
-  Smartphone,
   Cloud,
   Wrench,
-  Shield,
   Layers,
+  Database,
+  Search,
+  Plug,
+  Palette,
   type LucideIcon,
 } from "lucide-react";
 import { SectionHeader, StaggerContainer, StaggerItem } from "@/components/ui/animated-section";
@@ -21,13 +21,13 @@ import { cn } from "@/lib/utils";
 const categoryIcons: Record<string, LucideIcon> = {
   Code2,
   Server,
-  CreditCard,
-  Layout,
-  Smartphone,
   Cloud,
   Wrench,
-  Shield,
   Layers,
+  Database,
+  Search,
+  Plug,
+  Palette,
 };
 
 export function TechnologiesSection() {
@@ -80,13 +80,13 @@ export function TechnologiesSection() {
             className="mt-8"
           >
             <div className="rounded-3xl border border-border bg-background p-6 sm:p-8">
-              <div className="mb-6 flex items-center gap-3">
+              <div className="mb-4 flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/5 text-primary">
                   <Icon className="h-5 w-5" />
                 </div>
                 <div>
                   <h3 className="font-display text-lg font-semibold text-foreground">{selected.name}</h3>
-                  <p className="text-sm text-muted">{selected.items.length} capabilities</p>
+                  <p className="text-sm text-muted">{selected.description}</p>
                 </div>
               </div>
 
