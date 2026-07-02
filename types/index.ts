@@ -16,15 +16,37 @@ export interface ProcessStep {
 
 export interface Technology {
   id: string;
+  slug: string;
   name: string;
+  fullName: string;
+  categoryId: string;
+  logo: string;
+  iconType: 'image' | 'lucide';
+  creator: string;
+  releaseYear: number;
+  description: string;
+  whyWeUseIt: string[];
+  bestFor: string[];
+  officialWebsite: string;
+  documentationUrl: string;
+  githubUrl?: string;
+  relatedTechnologies: string[];
+  experienceLevel: 'Primary' | 'Core' | 'Advanced' | 'Supporting' | 'Learning';
+  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
+  usedInProjects: string[];
+  isCore: boolean;
+  status: 'Stable' | 'Beta' | 'Deprecated';
+  popularity: number;
+  color: string;
 }
 
-export interface TechnologyCategory {
+export interface TechCategory {
   id: string;
   name: string;
-  icon: string;
   description: string;
-  items: Technology[];
+  icon: string;
+  displayOrder: number;
+  gradient: string;
 }
 
 export interface Project {
