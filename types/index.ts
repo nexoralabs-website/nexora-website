@@ -28,6 +28,9 @@ export interface Technology {
   creator: string;
   releaseYear: number;
   description: string;
+  shortDescription?: string;
+  keywords?: string[];
+  aliases?: string[];
   whyWeUseIt: string[];
   bestFor: string[];
   officialWebsite: string;

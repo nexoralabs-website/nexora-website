@@ -49,6 +49,28 @@ import {
   Workflow,
   RotateCw,
   FlaskConical,
+  Boxes,
+  Play,
+  HardDrive,
+  GitBranch,
+  GitCommit,
+  GitPullRequest,
+  RefreshCw,
+  FileStack,
+  Terminal,
+  Key,
+  ShieldAlert,
+  TrendingUp,
+  ScrollText,
+  Monitor,
+  Share2,
+  CheckCircle2,
+  Briefcase,
+  ShoppingCart,
+  Upload,
+  Plus,
+  Receipt,
+  FileCheck,
 } from "lucide-react";
 import { categories } from "@/lib/categories";
 import { technologies } from "@/lib/technologies";
@@ -73,6 +95,12 @@ const categoryIcons: Record<string, React.ComponentType<{ className?: string }>>
   UploadCloud,
   CreditCard,
   ShieldCheck,
+  Shield,
+  Package,
+  ShoppingCart,
+  Upload,
+  GitBranch,
+  Briefcase,
 };
 
 const techIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -103,6 +131,28 @@ const techIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   "test-tube": FlaskConical,
   layers: Layers,
   search: Search,
+  boxes: Boxes,
+  play: Play,
+  "hard-drive": HardDrive,
+  "git-branch": GitBranch,
+  "git-commit": GitCommit,
+  "git-pull-request": GitPullRequest,
+  "refresh-cw": RefreshCw,
+  "file-stack": FileStack,
+  terminal: Terminal,
+  key: Key,
+  "shield-alert": ShieldAlert,
+  "trending-up": TrendingUp,
+  "scroll-text": ScrollText,
+  monitor: Monitor,
+  "share-2": Share2,
+  "check-circle-2": CheckCircle2,
+  briefcase: Briefcase,
+  "shopping-cart": ShoppingCart,
+  upload: Upload,
+  plus: Plus,
+  receipt: Receipt,
+  "file-check": FileCheck,
 };
 
 const getExperienceBadgeStyles = (level: Technology["experienceLevel"]) => {
@@ -251,6 +301,8 @@ export function TechnologiesSection() {
         tech.description.toLowerCase().includes(query) ||
         tech.creator.toLowerCase().includes(query) ||
         categoryName.includes(query) ||
+        (tech.keywords && tech.keywords.some((k) => k.toLowerCase().includes(query))) ||
+        (tech.aliases && tech.aliases.some((a) => a.toLowerCase().includes(query))) ||
         tech.bestFor.some((bf) => bf.toLowerCase().includes(query)) ||
         tech.whyWeUseIt.some((w) => w.toLowerCase().includes(query)) ||
         tech.experienceLevel.toLowerCase().includes(query);
