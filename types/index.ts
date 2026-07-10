@@ -11,7 +11,10 @@ export interface ProcessStep {
   step: number;
   title: string;
   description: string;
-  duration: string;
+  icon: string;
+  accordionDetails?: string[];
+  previewType?: "proposal" | "quotation" | "contract" | "invoice";
+  showTechStack?: boolean;
 }
 
 export interface Technology {

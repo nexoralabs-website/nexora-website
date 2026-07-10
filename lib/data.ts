@@ -54,40 +54,157 @@ export const services: Service[] = [
 
 export const processSteps: ProcessStep[] = [
   {
-    id: "discovery",
+    id: "discovery-call",
     step: 1,
-    title: "Discovery",
-    description: "Understand your goals, users, and technical requirements.",
-    duration: "Week 1",
+    title: "Discovery Call",
+    description: "We begin by understanding your business, goals, audience, existing challenges, and project expectations.",
+    icon: "MessageSquare",
+    accordionDetails: [
+      "Requirement Gathering",
+      "Business Analysis",
+      "Feature Planning",
+      "Technical Consultation",
+      "Timeline Discussion",
+      "Budget Discussion"
+    ]
   },
   {
-    id: "planning",
+    id: "project-proposal",
     step: 2,
-    title: "Planning",
-    description: "Define architecture, technology choices, and delivery milestones.",
-    duration: "Week 2",
+    title: "Project Proposal",
+    description: "After understanding your requirements, we prepare a detailed proposal tailored specifically for your business.",
+    icon: "FileText",
+    previewType: "proposal",
+    accordionDetails: [
+      "Client Information",
+      "Project Overview",
+      "Problem Statement",
+      "Proposed Solution",
+      "Features",
+      "Recommended Technology Stack",
+      "Estimated Timeline",
+      "Project Cost",
+      "Next Steps"
+    ]
   },
   {
-    id: "build",
+    id: "quotation",
     step: 3,
-    title: "Build",
-    description: "Develop and iterate quickly with regular checkpoints and feedback.",
-    duration: "Weeks 3–8",
+    title: "Quotation",
+    description: "Once the proposal is approved, we generate a professional quotation.",
+    icon: "Receipt",
+    previewType: "quotation",
+    accordionDetails: [
+      "Agency Details",
+      "Client Details",
+      "Scope of Work",
+      "Deliverables",
+      "Timeline",
+      "Pricing Breakdown",
+      "Payment Terms",
+      "Terms & Conditions",
+      "Approval Section"
+    ]
   },
   {
-    id: "launch",
+    id: "project-agreement",
     step: 4,
-    title: "Launch",
-    description: "Deploy to production and optimize for real-world performance.",
-    duration: "Week 9",
+    title: "Project Agreement",
+    description: "Before development begins, both parties sign a project agreement to ensure complete transparency.",
+    icon: "FileCheck",
+    previewType: "contract",
+    accordionDetails: [
+      "Scope",
+      "Deliverables",
+      "Timeline",
+      "Payment Schedule",
+      "Revision Policy",
+      "Ownership",
+      "Confidentiality",
+      "Warranty",
+      "Support",
+      "Termination Clause"
+    ]
   },
   {
-    id: "support",
+    id: "design-development",
     step: 5,
-    title: "Support",
-    description: "Ongoing maintenance, improvements, and feature evolution.",
-    duration: "Ongoing",
+    title: "Design & Development",
+    description: "Once documentation is completed, development begins.",
+    icon: "Code2",
+    showTechStack: true,
+    accordionDetails: [
+      "UI/UX Design",
+      "Database Architecture",
+      "Frontend Development",
+      "Backend Development",
+      "API Integration",
+      "Testing",
+      "Performance Optimization"
+    ]
   },
+  {
+    id: "client-review",
+    step: 6,
+    title: "Client Review",
+    description: "Clients receive continuous updates throughout development.",
+    icon: "CheckCircle",
+    accordionDetails: [
+      "Demo Sessions",
+      "Progress Reports",
+      "Feedback Collection",
+      "Revisions",
+      "Quality Assurance"
+    ]
+  },
+  {
+    id: "deployment",
+    step: 7,
+    title: "Deployment",
+    description: "After final approval, the application is deployed.",
+    icon: "Rocket",
+    accordionDetails: [
+      "Domain Setup",
+      "Hosting",
+      "SSL Configuration",
+      "Production Deployment",
+      "Final Testing",
+      "Performance Optimization"
+    ]
+  },
+  {
+    id: "invoice",
+    step: 8,
+    title: "Invoice",
+    description: "After project completion or milestone delivery, an official invoice is generated.",
+    icon: "FileText",
+    previewType: "invoice",
+    accordionDetails: [
+      "Invoice Number",
+      "Billing Summary",
+      "Services",
+      "Taxes",
+      "Total Amount",
+      "Due Date",
+      "Payment Methods",
+      "Notes"
+    ]
+  },
+  {
+    id: "support-maintenance",
+    step: 9,
+    title: "Support & Maintenance",
+    description: "Our relationship continues after launch.",
+    icon: "HeartHandshake",
+    accordionDetails: [
+      "Bug Fixes",
+      "Performance Monitoring",
+      "Security Updates",
+      "Feature Enhancements",
+      "Technical Support",
+      "Maintenance Plans"
+    ]
+  }
 ];
 
 
