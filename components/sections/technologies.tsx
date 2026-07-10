@@ -42,6 +42,12 @@ import {
   Tag,
   Star,
   MousePointer2,
+  Smartphone,
+  Rocket,
+  CreditCard,
+  Settings,
+  Workflow,
+  RotateCw,
 } from "lucide-react";
 import { categories } from "@/lib/categories";
 import { technologies } from "@/lib/technologies";
@@ -60,6 +66,12 @@ const categoryIcons: Record<string, React.ComponentType<{ className?: string }>>
   Plug,
   Palette,
   Lock,
+  Smartphone,
+  Rocket,
+  Sparkles,
+  UploadCloud,
+  CreditCard,
+  ShieldCheck,
 };
 
 const techIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -80,6 +92,13 @@ const techIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   palette: Palette,
   lock: Lock,
   zap: Zap,
+  smartphone: Smartphone,
+  rocket: Rocket,
+  sparkles: Sparkles,
+  creditcard: CreditCard,
+  settings: Settings,
+  workflow: Workflow,
+  rotatecw: RotateCw,
 };
 
 const getExperienceBadgeStyles = (level: Technology["experienceLevel"]) => {
@@ -279,9 +298,14 @@ export function TechnologiesSection() {
       <div className="container-narrow">
         {/* Hero */}
         <div className="max-w-3xl">
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-semibold text-primary mb-4">
-            <Sparkles className="h-3 w-3" /> Engineering Stack
-          </span>
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-semibold text-primary">
+              <Sparkles className="h-3 w-3" /> Engineering Stack
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-purple-200 bg-purple-50 px-3 py-1 text-xs font-semibold text-purple-700">
+              <Sparkles className="h-3 w-3" /> Continuously Learning & Shipping
+            </span>
+          </div>
           <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
             Engineering Capabilities
           </h2>
@@ -293,8 +317,8 @@ export function TechnologiesSection() {
         {/* Stat Cards */}
         <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {[
-            { value: "58+", label: "Technologies", icon: <LayoutGrid className="h-4 w-4" /> },
-            { value: "11+", label: "Categories", icon: <Layers className="h-4 w-4" /> },
+            { value: "50+", label: "Technologies", icon: <LayoutGrid className="h-4 w-4" /> },
+            { value: "12+", label: "Categories", icon: <Layers className="h-4 w-4" /> },
             { value: "100%", label: "Performance First", icon: <Zap className="h-4 w-4" /> },
             { value: "∞", label: "Production Ready", icon: <ShieldCheck className="h-4 w-4" /> },
           ].map((stat) => (

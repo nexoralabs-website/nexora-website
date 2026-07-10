@@ -14,6 +14,8 @@ import {
   HeartHandshake,
   ArrowRight,
   Sparkles,
+  Palette,
+  ShieldCheck,
 } from "lucide-react";
 import { SectionHeader, AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/animated-section";
 import { processSteps } from "@/lib/data";
@@ -30,6 +32,8 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   CheckCircle,
   Rocket,
   HeartHandshake,
+  Palette,
+  ShieldCheck,
 };
 
 function ProposalPreview() {
@@ -259,8 +263,8 @@ export function ProcessSection() {
       <div className="container-narrow">
         <SectionHeader
           label="Our Process"
-          title="Our Client Success Journey"
-          description="Every successful digital product follows a structured process. From understanding your business to long-term support, we ensure complete transparency at every stage."
+          title="Our Development Process"
+          description="Every successful digital product follows a structured workflow. From understanding your business goals to deployment and long-term support, we ensure transparency, collaboration, and quality throughout the development process."
         />
         
         <StaggerContainer className="mt-12 mx-auto max-w-3xl">

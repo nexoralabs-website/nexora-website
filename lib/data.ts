@@ -57,152 +57,144 @@ export const processSteps: ProcessStep[] = [
     id: "discovery-call",
     step: 1,
     title: "Discovery Call",
-    description: "We begin by understanding your business, goals, audience, existing challenges, and project expectations.",
+    description: "We start by understanding your business, goals, audience, and project requirements.",
     icon: "MessageSquare",
     accordionDetails: [
-      "Requirement Gathering",
-      "Business Analysis",
-      "Feature Planning",
-      "Technical Consultation",
-      "Timeline Discussion",
-      "Budget Discussion"
+      "Understanding your business goals",
+      "Target audience analysis",
+      "Project scope discussion",
+      "Initial timeline and budget"
     ]
   },
   {
-    id: "project-proposal",
+    id: "requirements-gathering",
     step: 2,
-    title: "Project Proposal",
-    description: "After understanding your requirements, we prepare a detailed proposal tailored specifically for your business.",
+    title: "Requirements Gathering",
+    description: "We detail all functional and non-functional requirements for your project.",
+    icon: "CheckCircle",
+    accordionDetails: [
+      "User stories and use cases",
+      "Technical specifications",
+      "Feature prioritization",
+      "Success metrics definition"
+    ]
+  },
+  {
+    id: "proposal",
+    step: 3,
+    title: "Proposal",
+    description: "We prepare a detailed proposal with project scope, timeline, and deliverables.",
     icon: "FileText",
     previewType: "proposal",
     accordionDetails: [
       "Client Information",
       "Project Overview",
-      "Problem Statement",
       "Proposed Solution",
-      "Features",
-      "Recommended Technology Stack",
+      "Features Breakdown",
+      "Technology Stack",
       "Estimated Timeline",
-      "Project Cost",
-      "Next Steps"
+      "Project Cost"
     ]
   },
   {
     id: "quotation",
-    step: 3,
+    step: 4,
     title: "Quotation",
-    description: "Once the proposal is approved, we generate a professional quotation.",
+    description: "A professional quotation with pricing and payment terms.",
     icon: "Receipt",
     previewType: "quotation",
     accordionDetails: [
-      "Agency Details",
-      "Client Details",
       "Scope of Work",
-      "Deliverables",
-      "Timeline",
       "Pricing Breakdown",
-      "Payment Terms",
-      "Terms & Conditions",
-      "Approval Section"
+      "Payment Schedule",
+      "Terms & Conditions"
     ]
   },
   {
-    id: "project-agreement",
-    step: 4,
-    title: "Project Agreement",
-    description: "Before development begins, both parties sign a project agreement to ensure complete transparency.",
+    id: "contract",
+    step: 5,
+    title: "Contract",
+    description: "Finalize the agreement with scope, deliverables, and terms.",
     icon: "FileCheck",
     previewType: "contract",
     accordionDetails: [
-      "Scope",
+      "Scope of Work",
       "Deliverables",
-      "Timeline",
-      "Payment Schedule",
-      "Revision Policy",
-      "Ownership",
+      "Payment Terms",
       "Confidentiality",
-      "Warranty",
-      "Support",
+      "Ownership",
       "Termination Clause"
     ]
   },
   {
-    id: "design-development",
-    step: 5,
-    title: "Design & Development",
-    description: "Once documentation is completed, development begins.",
-    icon: "Code2",
-    showTechStack: true,
+    id: "design",
+    step: 6,
+    title: "Design",
+    description: "Create UI/UX designs and wireframes for your product.",
+    icon: "Palette",
     accordionDetails: [
+      "Wireframing",
       "UI/UX Design",
-      "Database Architecture",
-      "Frontend Development",
-      "Backend Development",
-      "API Integration",
-      "Testing",
-      "Performance Optimization"
+      "Design System",
+      "Prototyping",
+      "Feedback & Revisions"
     ]
   },
   {
-    id: "client-review",
-    step: 6,
-    title: "Client Review",
-    description: "Clients receive continuous updates throughout development.",
-    icon: "CheckCircle",
+    id: "development",
+    step: 7,
+    title: "Development",
+    description: "Build the product using modern technologies and best practices.",
+    icon: "Code2",
+    showTechStack: true,
     accordionDetails: [
-      "Demo Sessions",
-      "Progress Reports",
-      "Feedback Collection",
-      "Revisions",
-      "Quality Assurance"
+      "Frontend Development",
+      "Backend Development",
+      "API Integration",
+      "Database Architecture",
+      "Code Reviews"
+    ]
+  },
+  {
+    id: "testing",
+    step: 8,
+    title: "Testing",
+    description: "Rigorous testing to ensure quality and reliability.",
+    icon: "ShieldCheck",
+    accordionDetails: [
+      "Unit Testing",
+      "Integration Testing",
+      "User Acceptance Testing",
+      "Performance Testing",
+      "Bug Fixes"
     ]
   },
   {
     id: "deployment",
-    step: 7,
+    step: 9,
     title: "Deployment",
-    description: "After final approval, the application is deployed.",
+    description: "Launch your product to production environment.",
     icon: "Rocket",
     accordionDetails: [
-      "Domain Setup",
-      "Hosting",
-      "SSL Configuration",
+      "Infrastructure Setup",
+      "Domain & SSL",
       "Production Deployment",
-      "Final Testing",
-      "Performance Optimization"
+      "Final Checks",
+      "Monitoring Setup"
     ]
   },
   {
-    id: "invoice",
-    step: 8,
-    title: "Invoice",
-    description: "After project completion or milestone delivery, an official invoice is generated.",
-    icon: "FileText",
-    previewType: "invoice",
-    accordionDetails: [
-      "Invoice Number",
-      "Billing Summary",
-      "Services",
-      "Taxes",
-      "Total Amount",
-      "Due Date",
-      "Payment Methods",
-      "Notes"
-    ]
-  },
-  {
-    id: "support-maintenance",
-    step: 9,
-    title: "Support & Maintenance",
-    description: "Our relationship continues after launch.",
+    id: "support",
+    step: 10,
+    title: "Support",
+    description: "Ongoing support and maintenance for your product.",
     icon: "HeartHandshake",
     accordionDetails: [
       "Bug Fixes",
-      "Performance Monitoring",
       "Security Updates",
+      "Performance Optimization",
       "Feature Enhancements",
-      "Technical Support",
-      "Maintenance Plans"
+      "Technical Support"
     ]
   }
 ];
