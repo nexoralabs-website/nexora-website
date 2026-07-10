@@ -48,6 +48,7 @@ import {
   Settings,
   Workflow,
   RotateCw,
+  FlaskConical,
 } from "lucide-react";
 import { categories } from "@/lib/categories";
 import { technologies } from "@/lib/technologies";
@@ -99,6 +100,9 @@ const techIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   settings: Settings,
   workflow: Workflow,
   rotatecw: RotateCw,
+  "test-tube": FlaskConical,
+  layers: Layers,
+  search: Search,
 };
 
 const getExperienceBadgeStyles = (level: Technology["experienceLevel"]) => {
@@ -317,8 +321,8 @@ export function TechnologiesSection() {
         {/* Stat Cards */}
         <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {[
-            { value: "50+", label: "Technologies", icon: <LayoutGrid className="h-4 w-4" /> },
-            { value: "12+", label: "Categories", icon: <Layers className="h-4 w-4" /> },
+            { value: `${technologies.length}+`, label: "Technologies", icon: <LayoutGrid className="h-4 w-4" /> },
+            { value: `${categories.length}+`, label: "Categories", icon: <Layers className="h-4 w-4" /> },
             { value: "100%", label: "Performance First", icon: <Zap className="h-4 w-4" /> },
             { value: "∞", label: "Production Ready", icon: <ShieldCheck className="h-4 w-4" /> },
           ].map((stat) => (
