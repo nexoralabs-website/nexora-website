@@ -30,7 +30,7 @@ export function DiscoveryCallSection() {
                 </div>
                 
                 <h2 className="font-display text-3xl font-bold text-primary sm:text-4xl lg:text-5xl text-balance leading-tight tracking-tight mb-6">
-                  Let's discuss your next product.
+                  Let&apos;s discuss your next product.
                 </h2>
                 
                 <p className="text-base sm:text-lg text-muted leading-relaxed mb-10">

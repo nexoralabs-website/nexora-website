@@ -23,7 +23,7 @@ export function ProcessSection() {
           <div className="hidden lg:block absolute top-12 left-0 right-0 h-px bg-border/60 z-0" />
 
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-8 relative z-10">
-            {processSteps.map((step, index) => {
+            {processSteps.map((step) => {
               const Icon = iconMap[step.icon] || Code2;
               
               return (
