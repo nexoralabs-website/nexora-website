@@ -119,7 +119,8 @@ export function HeroSection() {
             className="mx-auto mt-8 max-w-2xl text-lg text-muted leading-relaxed sm:text-xl"
           >
             We help startups, SMEs and growing businesses build websites, mobile apps and business software, automate repetitive operations and accelerate growth through Google Ads, Meta Ads, SEO, ASO and AI-powered solutions.
-                      {/* Service chips */}
+          </motion.p>
+          {/* Service chips */}
             <div className="mt-6 flex flex-wrap justify-center gap-2">
               {[
                 "Websites",
