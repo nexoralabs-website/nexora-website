@@ -1,116 +1,49 @@
 "use client";
 
-import { useRef } from "react";
-import { useInView } from "framer-motion";
 import { SectionHeader, AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/animated-section";
-import { coreValues, stats } from "@/lib/data";
-import { useAnimatedCounter } from "@/hooks/use-animations";
-
-function StatCounter({
-  value,
-  suffix,
-  label,
-}: {
-  value: number;
-  suffix: string;
-  label: string;
-}) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const count = useAnimatedCounter(value, 1600, isInView);
-
-  return (
-    <div ref={ref} className="text-center">
-      <p className="text-3xl font-bold text-foreground font-display sm:text-4xl">
-        {count}
-        {suffix}
-      </p>
-      <p className="mt-1.5 text-sm text-muted leading-snug">{label}</p>
-    </div>
-  );
-}
+import { coreValues } from "@/lib/data";
 
 export function AboutSection() {
   return (
-    <section id="about" className="section-padding" aria-label="About">
+    <section id="about" className="section-padding bg-white" aria-label="About Us">
       <div className="container-narrow">
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-20 items-center">
           <div>
             <SectionHeader
-              label="About"
-              title="Small team. Practical engineering."
+              label="About Us"
+              title="We solve business problems through technology."
               description=""
               align="left"
               className="mb-6"
             />
 
-            <AnimatedSection animation="fadeIn" className="space-y-4 text-muted leading-relaxed">
+            <AnimatedSection animation="fadeIn" className="space-y-6 text-muted leading-relaxed text-lg">
               <p>
-                Nexora Labs builds scalable digital products with a focus on clean engineering,
-                practical execution, and long-term maintainability.
+                Nexora Labs started with a simple observation: most businesses don&apos;t need just another piece of software. They need <strong className="text-foreground font-semibold">solutions that drive revenue and efficiency.</strong>
               </p>
               <p>
-                We work with modern technologies to create websites, SaaS platforms, APIs,
-                mobile apps, and business systems — built to actually ship and scale.
+                That&apos;s why we evolved beyond a traditional development shop. Today, we are a full-service digital agency that combines <span className="text-accent font-medium">software engineering, AI automation, and performance marketing.</span>
               </p>
               <p>
-                We&apos;re a small, focused team. That means direct communication, no hand-offs,
-                and engineers who stay accountable from the first line of code to launch.
+                We don&apos;t just hand over a codebase. We build scalable platforms, implement AI agents to automate your operations, and run targeted campaigns to grow your customer base. One unified team, aligned with your business goals.
               </p>
             </AnimatedSection>
           </div>
 
           <div>
-            <AnimatedSection animation="scale">
-              <div className="rounded-2xl border border-border bg-white p-6 shadow-sm">
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-muted mb-5">
-                  How we work
-                </h3>
-                <div className="space-y-3.5">
-                  {[
-                    "Code reviews on every change",
-                    "Clean, documented codebases",
-                    "Direct communication — no account managers",
-                    "Regular progress updates",
-                    "Post-launch support included",
-                  ].map((item) => (
-                    <div key={item} className="flex items-center gap-3">
-                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded bg-accent/10 text-accent text-xs font-bold">
-                        ✓
-                      </span>
-                      <span className="text-sm text-foreground/80">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </AnimatedSection>
-
-            <StaggerContainer className="mt-5 grid grid-cols-2 gap-3" staggerDelay={0.06}>
+            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-4" staggerDelay={0.1}>
               {coreValues.map((value) => (
                 <StaggerItem key={value.id}>
-                  <div className="rounded-xl border border-border bg-background p-4">
-                    <h4 className="text-sm font-semibold text-foreground">{value.title}</h4>
-                    <p className="mt-1 text-xs text-muted leading-relaxed">
+                  <div className="rounded-2xl border border-border bg-background p-6 h-full transition-all duration-300 hover:border-accent/30 hover:shadow-md hover:-translate-y-1 group">
+                    <div className="h-1 w-8 bg-accent rounded-full mb-4 transition-all duration-300 group-hover:w-12" />
+                    <h4 className="text-lg font-bold text-foreground mb-2">{value.title}</h4>
+                    <p className="text-sm text-muted leading-relaxed">
                       {value.description}
                     </p>
                   </div>
                 </StaggerItem>
               ))}
             </StaggerContainer>
-          </div>
-        </div>
-
-        {/* Stats */}
-        <div className="mt-16 rounded-2xl border border-border bg-white p-8 sm:p-10">
-          <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
-            {stats.map((stat) => (
-              <StatCounter
-                key={stat.label}
-                value={stat.value}
-                suffix={stat.suffix}
-                label={stat.label}
-              />
-            ))}
           </div>
         </div>
       </div>

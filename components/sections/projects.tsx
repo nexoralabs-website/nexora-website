@@ -6,83 +6,75 @@ import { projects } from "@/lib/data";
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="section-padding" aria-label="Featured Projects">
+    <section id="portfolio" className="section-padding bg-background" aria-label="Featured Case Studies">
       <div className="container-narrow">
         <SectionHeader
-          label="Featured Projects"
-          title="Case Studies That Speak Results"
-          description="Real projects, real impact. See how we've helped businesses transform their digital presence."
+          label="Our Work"
+          title="Featured Case Studies"
+          description="A selection of digital products, scalable architectures, and automation systems we've engineered."
         />
 
-        <StaggerContainer className="space-y-8">
-          {projects.map((project, index) => (
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+          {projects.map((project) => (
             <StaggerItem key={project.id}>
-              <article className="group rounded-2xl border border-border bg-white overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-accent/20">
-                <div className="grid grid-cols-1 lg:grid-cols-2">
-                  <div className="p-8 lg:p-10">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
-                        {project.category}
-                      </span>
-                      <span className="text-xs text-muted">Case Study {String(index + 1).padStart(2, "0")}</span>
+              <article className="card-premium h-full flex flex-col group overflow-hidden border-border/80">
+                <div className="p-8 sm:p-10 flex-1 flex flex-col bg-white">
+                  
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="rounded-full bg-surface border border-border px-3 py-1 text-xs font-semibold text-primary">
+                      {project.category}
+                    </span>
+                    <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-sm ${
+                      project.status === 'Production' ? 'bg-accent/10 text-accent-dark' : 'bg-orange-100 text-orange-800'
+                    }`}>
+                      {project.status}
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl font-bold text-primary mb-3">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-muted leading-relaxed mb-8">
+                    {project.overview}
+                  </p>
+
+                  {/* Deep Dive Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8 flex-1">
+                    <div>
+                      <h4 className="text-[11px] font-bold uppercase tracking-widest text-muted mb-2">The Problem</h4>
+                      <p className="text-sm text-primary leading-relaxed">{project.problem}</p>
                     </div>
-
-                    <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-
-                    <div className="mt-6 space-y-4">
-                      <div>
-                        <h4 className="text-xs font-semibold uppercase tracking-wider text-muted mb-1">
-                          Problem
-                        </h4>
-                        <p className="text-sm text-foreground/80 leading-relaxed">
-                          {project.problem}
-                        </p>
-                      </div>
-                      <div>
-                        <h4 className="text-xs font-semibold uppercase tracking-wider text-muted mb-1">
-                          Solution
-                        </h4>
-                        <p className="text-sm text-foreground/80 leading-relaxed">
-                          {project.solution}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="rounded-lg border border-border bg-background px-2.5 py-1 text-xs font-medium text-muted"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                    <div>
+                      <h4 className="text-[11px] font-bold uppercase tracking-widest text-muted mb-2">Our Solution</h4>
+                      <p className="text-sm text-primary leading-relaxed">{project.solution}</p>
                     </div>
                   </div>
 
-                  <div className="flex flex-col justify-center bg-primary p-8 lg:p-10 text-white">
-                    <h4 className="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">
-                      Result
-                    </h4>
-                    <p className="text-lg font-medium leading-relaxed text-white/90">
-                      {project.result}
-                    </p>
+                  {/* Impact */}
+                  <div className="mb-8 p-4 bg-surface border border-border/50 rounded-lg">
+                    <h4 className="text-[11px] font-bold uppercase tracking-widest text-muted mb-1">Business Impact</h4>
+                    <p className="text-sm font-medium text-primary">{project.impact}</p>
+                  </div>
 
-                    <div className="mt-8 grid grid-cols-3 gap-4">
-                      {project.metrics.map((metric) => (
-                        <div key={metric.label}>
-                          <p className="text-2xl font-bold text-accent">{metric.value}</p>
-                          <p className="text-xs text-white/50 mt-1">{metric.label}</p>
-                        </div>
+                  {/* Footer / Tech */}
+                  <div className="mt-auto pt-6 border-t border-border/50 flex flex-wrap items-center justify-between gap-4">
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.slice(0, 4).map((tech) => (
+                        <span key={tech} className="text-[11px] font-semibold text-muted bg-surface border border-border px-2 py-0.5 rounded-md">
+                          {tech}
+                        </span>
                       ))}
+                      {project.technologies.length > 4 && (
+                        <span className="text-[11px] font-semibold text-muted bg-surface border border-border px-2 py-0.5 rounded-md">
+                          +{project.technologies.length - 4}
+                        </span>
+                      )}
                     </div>
-
-                    <div className="mt-8 flex items-center gap-1 text-sm font-medium text-accent opacity-0 group-hover:opacity-100 transition-opacity">
-                      View case study
+                    
+                    <button className="flex items-center justify-center h-8 w-8 rounded-full bg-surface border border-border text-primary group-hover:bg-primary group-hover:text-white transition-colors" aria-label="Read full case study (Coming Soon)">
                       <ArrowUpRight className="h-4 w-4" />
-                    </div>
+                    </button>
                   </div>
                 </div>
               </article>

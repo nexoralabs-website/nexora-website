@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-primary: #0f172a;
-  --color-accent: #84cc16;
-  --color-background: #f8fafc;
-  --color-foreground: #111827;
-  --color-muted: #6b7280;
-  --color-border: #e5e7eb;
-  --color-card: #ffffff;
+  --color-primary: #0F172A; /* Deep Navy */
+  --color-accent: #84CC16; /* Lime Green */
+  --color-accent-dark: #65A30D;
+  --color-background: #FFFFFF; /* Pure White background */
+  --color-foreground: #0F172A; /* Deep Navy for text */
+  --color-muted: #64748B; /* Tailwind Slate 500 */
+  --color-border: #E2E8F0; /* Tailwind Slate 200 */
+  --color-card: #FFFFFF;
+  --color-surface: #F8FAFC; /* Tailwind Slate 50 */
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-display: var(--font-geist-sans), system-ui, sans-serif;
   --radius-sm: 0.375rem;
@@ -24,6 +26,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 96px;
   }
 
   body {
@@ -34,6 +37,10 @@
   ::selection {
     @apply bg-accent/20 text-foreground;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight text-primary;
+  }
 }
 
 @layer utilities {
@@ -42,22 +49,71 @@
   }
 
   .glass {
-    @apply bg-white/70 backdrop-blur-xl border border-white/20;
-  }
-
-  .glass-dark {
-    @apply bg-primary/80 backdrop-blur-xl border border-white/10;
+    @apply bg-white/80 backdrop-blur-md border border-border/50;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-foreground via-foreground to-muted bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent;
   }
 
   .section-padding {
-    @apply px-4 sm:px-6 lg:px-8 py-20 md:py-28 lg:py-32;
+    @apply px-4 sm:px-6 lg:px-8 py-24 md:py-32;
   }
 
   .container-narrow {
     @apply mx-auto max-w-7xl;
   }
+
+  /* Linear/Vercel style premium cards */
+  .card-premium {
+    @apply rounded-xl border border-border/60 bg-white shadow-[0_2px_8px_-2px_rgba(15,23,42,0.05),0_1px_4px_-1px_rgba(15,23,42,0.02)] transition-all duration-300 hover:shadow-[0_8px_24px_-4px_rgba(15,23,42,0.08),0_4px_12px_-2px_rgba(15,23,42,0.04)] hover:border-border;
+  }
+
+  /* Extremely subtle gradient border top */
+  .gradient-border-top {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gradient-border-top::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(132, 204, 22, 0.5), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .gradient-border-top:hover::before {
+    opacity: 1;
+  }
 }
+
+/* ── Minimal Animations ─────────────────────────────────────────────────── */
+
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes grid-fade {
+  0%, 100% { opacity: 0.02; }
+  50% { opacity: 0.04; }
+}
+
+.animate-float-subtle {
+  animation: float-subtle 6s ease-in-out infinite;
+}
+
+.animate-grid-fade {
+  animation: grid-fade 8s ease-in-out infinite;
+}
+
+/* Delay helpers */
+.animation-delay-1000 { animation-delay: 1s; }
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-3000 { animation-delay: 3s; }
+.animation-delay-4000 { animation-delay: 4s; }

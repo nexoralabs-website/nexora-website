@@ -4,6 +4,15 @@ export interface Service {
   description: string;
   icon: string;
   features: string[];
+  benefits: string[];
+  cta: string;
+}
+
+export interface ServiceCategory {
+  id: string;
+  label: string;
+  icon: string;
+  services: Service[];
 }
 
 export interface ProcessStep {
@@ -12,9 +21,6 @@ export interface ProcessStep {
   title: string;
   description: string;
   icon: string;
-  accordionDetails?: string[];
-  previewType?: "proposal" | "quotation" | "contract" | "invoice";
-  showTechStack?: boolean;
 }
 
 export interface Technology {
@@ -57,23 +63,42 @@ export interface TechCategory {
   gradient: string;
 }
 
+export interface TechStackItem {
+  name: string;
+  icon: string;
+  category: string;
+}
+
+export interface Metric {
+  id: string;
+  label: string;
+  value: string;
+  description: string;
+  icon: string;
+}
+
 export interface Project {
   id: string;
   title: string;
   category: string;
+  
+  // New Case Study Fields
+  overview: string;
   problem: string;
   solution: string;
   technologies: string[];
-  result: string;
-  metrics: { label: string; value: string }[];
+  features: string[];
+  status: 'Production' | 'Development' | 'MVP' | 'Maintenance';
+  impact: string;
+  
+  isPlaceholder: boolean;
 }
 
-export interface Testimonial {
+export interface Industry {
   id: string;
-  quote: string;
-  author: string;
-  role: string;
-  company: string;
+  name: string;
+  description: string;
+  icon: string;
 }
 
 export interface FAQ {
@@ -84,11 +109,12 @@ export interface FAQ {
 
 export interface ContactFormData {
   name: string;
-  email: string;
   company?: string;
+  email: string;
   phone?: string;
   service: string;
   budget?: string;
+  timeline?: string;
   message: string;
 }
 
