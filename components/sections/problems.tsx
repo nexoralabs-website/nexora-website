@@ -19,7 +19,7 @@ export function ProblemsSection() {
         <SectionHeader
           label="Problems"
           title="We Solve Real Business Problems"
-          description="You’re focused on growth. We remove the obstacles."
+          description="You&apos;re focused on growth. We remove the obstacles."
         />
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12">
           {problems.map((p) => (
@@ -31,7 +31,7 @@ export function ProblemsSection() {
             </StaggerItem>
           ))}
         </StaggerContainer>
-        <p className="mt-8 text-center text-lg font-semibold text-primary">You're in the right place.</p>
+        <p className="mt-8 text-center text-lg font-semibold text-primary">You&apos;re in the right place.</p>
       </div>
     </section>
   );

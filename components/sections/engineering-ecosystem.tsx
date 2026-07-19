@@ -4,7 +4,7 @@ import { SectionHeader, StaggerContainer, StaggerItem } from "@/components/ui/an
 import { engineeringEcosystem } from "@/lib/data";
 import { Monitor, Server, Smartphone, BrainCircuit, Bot, Cloud, BarChart3, Database, GitBranch } from "lucide-react";
 
-const iconMap: Record<string, React.ComponentType<any>> = {
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Monitor,
   Server,
   Smartphone,

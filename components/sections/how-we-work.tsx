@@ -4,7 +4,7 @@ import { SectionHeader, StaggerContainer, StaggerItem } from "@/components/ui/an
 import { howWeWorkSteps } from "@/lib/data";
 import { Phone, ClipboardList, FileText, Receipt, FileSignature, CalendarDays, PencilRuler, Code2, Bug, Rocket, LifeBuoy } from "lucide-react";
 
-const iconMap: Record<string, React.ComponentType<any>> = {
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Phone,
   ClipboardList,
   FileText,

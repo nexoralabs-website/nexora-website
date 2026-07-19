@@ -1,7 +1,7 @@
 "use client";
 
 import { SectionHeader, AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/animated-section";
-import { coreValues } from "@/lib/data";
+import { engineeringPrinciples as coreValues } from "@/lib/data";
 
 export function AboutSection() {
   return (
@@ -33,7 +33,7 @@ export function AboutSection() {
           <div>
             <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-4" staggerDelay={0.1}>
               {coreValues.map((value) => (
-                <StaggerItem key={value.id}>
+                <StaggerItem key={value.title}>
                   <div className="rounded-2xl border border-border bg-background p-6 h-full transition-all duration-300 hover:border-accent/30 hover:shadow-md hover:-translate-y-1 group">
                     <div className="h-1 w-8 bg-accent rounded-full mb-4 transition-all duration-300 group-hover:w-12" />
                     <h4 className="text-lg font-bold text-foreground mb-2">{value.title}</h4>

@@ -1,7 +1,7 @@
 "use client";
 
 import { SectionHeader } from "@/components/ui/animated-section";
-import { ArrowRight, Search, Map, Palette, Code2, Bot, Rocket, TrendingUp } from "lucide-react";
+import { ArrowRight, Search, Map, Palette, Code2, Bot, Rocket } from "lucide-react";
 
 export function HowWeHelpSection() {
   const steps = [

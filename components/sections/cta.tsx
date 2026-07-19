@@ -19,35 +19,33 @@ export function PricingCTASection() {
                 Partner with Nexora Labs to architect scalable software, automate critical workflows, and implement data-driven growth strategies.
               </p>
               
-              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <MagneticButton variant="accent" size="lg" href="#contact" className="w-full sm:w-auto h-14 px-10 text-sm font-bold bg-primary text-white hover:bg-primary/90 border-transparent shadow-sm">
-                Need a Website?
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </MagneticButton>
-              <MagneticButton variant="accent" size="lg" href="#contact" className="w-full sm:w-auto h-14 px-10 text-sm font-bold bg-primary text-white hover:bg-primary/90 border-transparent shadow-sm">
-                Need an App?
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </MagneticButton>
-              <MagneticButton variant="accent" size="lg" href="#contact" className="w-full sm:w-auto h-14 px-10 text-sm font-bold bg-primary text-white hover:bg-primary/90 border-transparent shadow-sm">
-                Need Business Automation?
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </MagneticButton>
-              <MagneticButton variant="accent" size="lg" href="#contact" className="w-full sm:w-auto h-14 px-10 text-sm font-bold bg-primary text-white hover:bg-primary/90 border-transparent shadow-sm">
-                Need More Leads?
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </MagneticButton>
-              <MagneticButton variant="accent" size="lg" href="#contact" className="w-full sm:w-auto h-14 px-10 text-sm font-bold bg-primary text-white hover:bg-primary/90 border-transparent shadow-sm">
-                Let's Talk
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </MagneticButton>
-            </div>
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+                <MagneticButton variant="accent" size="lg" href="#contact" className="w-full sm:w-auto h-14 px-10 text-sm font-bold bg-primary text-white hover:bg-primary/90 border-transparent shadow-sm">
+                  Need a Website?
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </MagneticButton>
+                <MagneticButton variant="accent" size="lg" href="#contact" className="w-full sm:w-auto h-14 px-10 text-sm font-bold bg-primary text-white hover:bg-primary/90 border-transparent shadow-sm">
+                  Need an App?
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </MagneticButton>
+                <MagneticButton variant="accent" size="lg" href="#contact" className="w-full sm:w-auto h-14 px-10 text-sm font-bold bg-primary text-white hover:bg-primary/90 border-transparent shadow-sm">
+                  Need Business Automation?
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </MagneticButton>
+                <MagneticButton variant="accent" size="lg" href="#contact" className="w-full sm:w-auto h-14 px-10 text-sm font-bold bg-primary text-white hover:bg-primary/90 border-transparent shadow-sm">
+                  Need More Leads?
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </MagneticButton>
+                <MagneticButton variant="accent" size="lg" href="#contact" className="w-full sm:w-auto h-14 px-10 text-sm font-bold bg-primary text-white hover:bg-primary/90 border-transparent shadow-sm">
+                  Let&apos;s Talk
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </MagneticButton>
               </div>
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold text-muted tracking-wider uppercase">
-                <span className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-accent" /> Fixed-price contracts</span>
-                <span className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-accent" /> Long-term SLAs</span>
-                <span className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-accent" /> Source code ownership</span>
+                <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-accent" /> Fixed-price contracts</span>
+                <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-accent" /> Long-term SLAs</span>
+                <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-accent" /> Source code ownership</span>
               </div>
             </div>
             

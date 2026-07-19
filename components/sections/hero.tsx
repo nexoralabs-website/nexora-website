@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Bot, BarChart3, Code2, Rocket, ShieldCheck } from "lucide-react";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { Button } from "@/components/ui/button";
-import { heroPillars } from "@/lib/data";
+import { engineeringPrinciples as heroPillars } from "@/lib/data";
 import { siteConfig } from "@/lib/constants";
 
 function FloatingCard({
@@ -170,12 +170,12 @@ export function HeroSection() {
             <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-[11px] font-semibold text-muted/80 uppercase tracking-wider">
               {heroPillars.map((pillar, i) => (
                 <motion.span
-                  key={pillar}
+                  key={pillar.title}
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.55 + i * 0.06 }}
                 >
-                  {pillar}
+                  {pillar.title}
                 </motion.span>
               ))}
             </div>

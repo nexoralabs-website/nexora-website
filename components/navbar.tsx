@@ -7,7 +7,7 @@ import { Menu, X, ChevronDown, MessageCircle, ArrowRight, Bot, Code2, Megaphone,
 import { Logo } from "@/components/logo";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { navLinks, siteConfig } from "@/lib/constants";
-import { serviceCategories } from "@/lib/data";
+import { categories as serviceCategories } from "@/lib/categories";
 import { useScrollPosition } from "@/hooks/use-animations";
 import { cn } from "@/lib/utils";
 
@@ -95,7 +95,7 @@ export function Navbar() {
                                   </div>
                                   <div>
                                     <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                                      {cat.label}
+                                      {cat.name}
                                     </p>
                                   </div>
                                 </Link>

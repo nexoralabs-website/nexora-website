@@ -11,7 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { contactFormSchema, type ContactFormValues } from "@/lib/validations/contact";
 import { siteConfig } from "@/lib/constants";
-import { services } from "@/lib/data";
+import { solutions as services } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
 const WHATSAPP_BASE = siteConfig.links.whatsappBase;
