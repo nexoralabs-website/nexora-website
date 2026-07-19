@@ -12,7 +12,7 @@ const iconMap: Record<string, React.ElementType> = {
   Globe, Users, GitBranch, Download
 };
 
-export function ServicesSection() {
+export function SolutionsSection() {
   return (
     <section id="services" className="section-padding bg-background" aria-label="Services">
       <div className="container-narrow">

@@ -118,8 +118,26 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mx-auto mt-8 max-w-2xl text-lg text-muted leading-relaxed sm:text-xl"
           >
-            A modern digital product engineering agency helping startups and businesses build scalable software, AI automation systems, and growth-driven digital experiences.
-          </motion.p>
+            We help startups, SMEs and growing businesses build websites, mobile apps and business software, automate repetitive operations and accelerate growth through Google Ads, Meta Ads, SEO, ASO and AI-powered solutions.
+                      {/* Service chips */}
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              {[
+                "Websites",
+                "Mobile Apps",
+                "SaaS Products",
+                "CRM Automation",
+                "AI Automation",
+                "Google Ads",
+                "Meta Ads",
+                "SEO",
+                "ASO",
+              ].map((chip) => (
+                <span key={chip} className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
+                  ✓ {chip}
+                </span>
+              ))}
+            </div>
+
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

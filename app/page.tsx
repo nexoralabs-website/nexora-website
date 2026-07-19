@@ -1,13 +1,17 @@
 import { HeroSection } from "@/components/sections/hero";
-import { SocialProofSection } from "@/components/sections/social-proof";
+import { ProblemsSection } from "@/components/sections/problems";
+import { WhatWeDoSection } from "@/components/sections/what-we-do";
+import { HowWeHelpSection } from "@/components/sections/how-we-help";
+import { WhoWeWorkWithSection } from "@/components/sections/who-we-work-with";
 import { MetricsSection } from "@/components/sections/metrics";
-import { ServicesSection } from "@/components/sections/services";
+import { SolutionsSection } from "@/components/sections/services";
 import { IndustriesSection } from "@/components/sections/industries";
-import { WhyUsSection } from "@/components/sections/why-us";
-import { ProcessSection } from "@/components/sections/process";
-import { TechStackSection } from "@/components/sections/tech-stack";
-import { AboutSection } from "@/components/sections/about";
+import { WhyChooseSection } from "@/components/sections/why-choose";
 import { ProjectsSection } from "@/components/sections/projects";
+import { NexoraOSSection } from "@/components/sections/nexora-os";
+import { GrowthMarketingSection } from "@/components/sections/growth-marketing";
+import { TechStackSection } from "@/components/sections/tech-stack";
+import { ProcessSection } from "@/components/sections/process";
 import { FAQSection } from "@/components/sections/faq";
 import { PricingCTASection } from "@/components/sections/cta";
 import { ContactSection } from "@/components/sections/contact";
@@ -18,17 +22,19 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <SocialProofSection />
+      <ProblemsSection />
+      <WhatWeDoSection />
+      <HowWeHelpSection />
+      <WhoWeWorkWithSection />
       <MetricsSection />
-      <ServicesSection />
+      <SolutionsSection />
       <IndustriesSection />
-      <WhyUsSection />
+      <WhyChooseSection />
       <ProjectsSection />
-      <ProcessSection />
+      <NexoraOSSection />
+      <GrowthMarketingSection />
       <TechStackSection />
-      <DiscoveryCallSection />
-      <AboutSection />
-      <ResourcesSection />
+      <ProcessSection />
       <FAQSection />
       <PricingCTASection />
       <ContactSection />

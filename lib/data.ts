@@ -38,7 +38,7 @@ export const services: Service[] = [
   {
     id: "ai-automation",
     title: "AI Automation",
-    description: "Intelligent workflows and AI agents that handle repetitive tasks, data processing, and customer interactions autonomously.",
+    description: "Manual repetitive tasks and data processing waste time. Companies of any size can use AI agents to automate these processes, reducing operational costs and scaling without hiring.",
     icon: "Bot",
     features: ["Custom AI Agents", "LLM Integration", "Automated Workflows"],
     benefits: ["Reduce operational costs", "Scale without hiring", "24/7 autonomous operation"],
@@ -47,7 +47,7 @@ export const services: Service[] = [
   {
     id: "custom-software",
     title: "Custom Software Development",
-    description: "Enterprise-grade software and SaaS platforms engineered for high availability, security, and limitless scale.",
+    description: "Complex business logic requires bespoke solutions. Enterprises and growing firms need tailored software that fits their processes, delivering robust, future‑proof systems.",
     icon: "Code2",
     features: ["SaaS Architecture", "Microservices", "Cloud-native Development"],
     benefits: ["Robust and scalable", "Tailored to your exact logic", "Future-proof tech stack"],
@@ -56,7 +56,7 @@ export const services: Service[] = [
   {
     id: "web-development",
     title: "Web Development",
-    description: "High-performance, SEO-optimized web applications built with modern frameworks like Next.js and React.",
+    description: "Having a static or slow website hampers acquisition. Businesses need high‑performance, SEO‑optimized web apps that convert visitors into customers.",
     icon: "Globe",
     features: ["Next.js & React", "Server-Side Rendering", "Headless CMS"],
     benefits: ["Sub-second load times", "Perfect SEO scores", "Engaging user experience"],
@@ -74,7 +74,7 @@ export const services: Service[] = [
   {
     id: "digital-marketing",
     title: "Digital Marketing",
-    description: "Data-driven performance marketing campaigns designed to generate highly qualified leads and maximize ROI.",
+    description: "Inefficient ad spend and low lead quality stall growth. Companies benefit from data‑driven campaigns that generate qualified leads and maximize ROI.",
     icon: "Megaphone",
     features: ["Meta & Google Ads", "Funnel Optimization", "Analytics & Tracking"],
     benefits: ["Predictable revenue growth", "Lower cost per acquisition", "Targeted audience reach"],
@@ -83,7 +83,7 @@ export const services: Service[] = [
   {
     id: "seo",
     title: "SEO",
-    description: "Technical and content-driven Search Engine Optimization to ensure your business dominates organic search results.",
+    description: "Low organic visibility drives traffic costs. Brands improve rankings to attract sustainable traffic and reduce reliance on paid ads.",
     icon: "Search",
     features: ["Technical Audits", "Core Web Vitals", "Keyword Strategy"],
     benefits: ["Sustainable organic traffic", "Higher domain authority", "Reduced ad dependency"],
@@ -92,7 +92,7 @@ export const services: Service[] = [
   {
     id: "aso",
     title: "ASO",
-    description: "App Store Optimization strategies to increase your application's visibility and conversion rates on major app stores.",
+    description: "App store discoverability is limited. Developers boost downloads and conversion by optimizing listings and keywords.",
     icon: "Download",
     features: ["Keyword Ranking", "Listing Optimization", "A/B Testing"],
     benefits: ["More organic downloads", "Higher app store ranking", "Better user acquisition"],
@@ -101,7 +101,7 @@ export const services: Service[] = [
   {
     id: "crm-automation",
     title: "CRM Automation",
-    description: "End-to-end automation of your customer relationship pipeline, from lead capture to follow-up sequences.",
+    description: "Manual lead handling leads to missed opportunities. Sales teams automate routing and follow‑ups to increase closing rates.",
     icon: "Users",
     features: ["Lead Routing", "Automated Follow-ups", "Data Enrichment"],
     benefits: ["Never miss a lead", "Higher closing rates", "Streamlined sales process"],
@@ -110,7 +110,7 @@ export const services: Service[] = [
   {
     id: "business-process-automation",
     title: "Business Process Automation",
-    description: "Connecting your disparate tools and eliminating manual data entry through sophisticated integrations.",
+    description: "Disparate tools cause data silos and errors. Organizations streamline workflows with integrations, saving hours and ensuring real‑time sync.",
     icon: "GitBranch",
     features: ["API Integrations", "n8n & Zapier", "Custom Webhooks"],
     benefits: ["Zero human errors", "Save hundreds of hours", "Real-time data sync"],

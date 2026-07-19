@@ -20,10 +20,28 @@ export function PricingCTASection() {
               </p>
               
               <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <MagneticButton variant="accent" size="lg" href="#contact" className="w-full sm:w-auto h-14 px-10 text-sm font-bold bg-primary text-white hover:bg-primary/90 border-transparent shadow-sm">
-                  Start Your Project
-                  <ArrowRight className="h-4 w-4 ml-2" />
-                </MagneticButton>
+                            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <MagneticButton variant="accent" size="lg" href="#contact" className="w-full sm:w-auto h-14 px-10 text-sm font-bold bg-primary text-white hover:bg-primary/90 border-transparent shadow-sm">
+                Need a Website?
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </MagneticButton>
+              <MagneticButton variant="accent" size="lg" href="#contact" className="w-full sm:w-auto h-14 px-10 text-sm font-bold bg-primary text-white hover:bg-primary/90 border-transparent shadow-sm">
+                Need an App?
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </MagneticButton>
+              <MagneticButton variant="accent" size="lg" href="#contact" className="w-full sm:w-auto h-14 px-10 text-sm font-bold bg-primary text-white hover:bg-primary/90 border-transparent shadow-sm">
+                Need Business Automation?
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </MagneticButton>
+              <MagneticButton variant="accent" size="lg" href="#contact" className="w-full sm:w-auto h-14 px-10 text-sm font-bold bg-primary text-white hover:bg-primary/90 border-transparent shadow-sm">
+                Need More Leads?
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </MagneticButton>
+              <MagneticButton variant="accent" size="lg" href="#contact" className="w-full sm:w-auto h-14 px-10 text-sm font-bold bg-primary text-white hover:bg-primary/90 border-transparent shadow-sm">
+                Let's Talk
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </MagneticButton>
+            </div>
               </div>
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold text-muted tracking-wider uppercase">
