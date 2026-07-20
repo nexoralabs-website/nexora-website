@@ -151,7 +151,7 @@ export function HeroSection() {
               <ArrowRight className="h-4 w-4 ml-2" />
             </MagneticButton>
             <Button variant="outline" size="lg" className="h-14 px-10 text-sm font-bold bg-white hover:bg-surface border-border shadow-sm text-primary" asChild>
-              <Link href="#portfolio">View Case Studies</Link>
+              <Link href="#about">View Case Studies</Link>
             </Button>
           </motion.div>
 

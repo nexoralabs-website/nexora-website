@@ -34,7 +34,7 @@ export function WhatWeDoSection() {
   ];
 
   return (
-    <section id="what-we-do" className="section-padding bg-background" aria-label="What We Actually Do">
+    <section id="services" className="section-padding bg-background" aria-label="What We Actually Do">
       <div className="container-narrow">
         <SectionHeader
           label="What We Actually Do"

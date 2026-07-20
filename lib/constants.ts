@@ -30,7 +30,6 @@ export const navLinks = [
   { label: "Services", href: "#services" },
   { label: "About", href: "#about" },
   { label: "Process", href: "#process" },
-  { label: "Portfolio", href: "#portfolio" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
@@ -46,13 +45,11 @@ export const footerLinks = {
   company: [
     { label: "About", href: "#about" },
     { label: "Process", href: "#process" },
-    { label: "Technologies", href: "#tech-stack" },
-    { label: "Portfolio", href: "#portfolio" },
+    { label: "Technologies", href: "#engineering-ecosystem" },
     { label: "Contact", href: "#contact" },
   ],
   resources: [
     { label: "Blog", href: "#" },
-    { label: "Case Studies", href: "#portfolio" },
     { label: "Careers", href: "#" },
   ],
   legal: [

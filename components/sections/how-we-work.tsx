@@ -20,7 +20,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 export function HowWeWorkSection() {
   return (
-    <section id="how-we-work" className="section-padding bg-background" aria-label="How We Work">
+    <section id="process" className="section-padding bg-background" aria-label="How We Work">
       <div className="container-narrow">
         <SectionHeader
           label="Process"
